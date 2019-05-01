@@ -2,6 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 import os
 import humanfriendly
+from django.contrib.auth.models import User
 
 # Create your models here.
 
