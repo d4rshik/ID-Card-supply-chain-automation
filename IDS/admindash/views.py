@@ -37,6 +37,7 @@ def dashboard(request):
     }
     return render(request,'dashboard.html',context)
 
+@login_required(login_url='/accounts/login')
 def registerclient(request):
     form = ClientDetailForm()
     if request.method == 'POST':
@@ -50,6 +51,7 @@ def registerclient(request):
     }
     return render(request,'registerclient.html',context)
 
+@login_required(login_url='/accounts/login')
 def clientdetails(request):
     if request.method == "POST":
         addorder = request.POST.get('addorder')
@@ -64,6 +66,7 @@ def clientdetails(request):
     }
     return render(request,'clientdetails.html',context)
 
+@login_required(login_url='/accounts/login')
 def clientpage(request,client):
     print(client)
     obj = OrderDetail.objects.filter(Q(company__company__iexact=client))
@@ -81,6 +84,7 @@ def clientpage(request,client):
     }
     return render(request,'clientpage.html',context)
 
+@login_required(login_url='/accounts/login')
 def orderlists(request):
     total = OrderDetail.objects.count()
     pending = OrderDetail.objects.filter(template=True,data=True,billing=True,production=True,shipping=True).count()
@@ -92,6 +96,7 @@ def orderlists(request):
     }
     return render(request,'orderlist.html',context)
 
+@login_required(login_url='/accounts/login')
 def orderlistfilter(request,slug,stage):
     if request.method == "POST":
         order = OrderDetail.objects.get(orderid=slug)
